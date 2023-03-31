@@ -5,4 +5,4 @@ def home(request):
     return render(request, 'base.html')
 
 def new_search(request):
-    return None
+    return render(request, 'my_app/new_search.html')
