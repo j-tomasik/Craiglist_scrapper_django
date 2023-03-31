@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {%csrf_token %}
 
-    <from action="{% url 'new_search' %}" method="post">
-        <input type="'text" name="'search" placeholder="search">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-            <i class="material-icons right">send</i>
-        </button>
-    </from>
+    <h2 style="text-align: center">{{ search | title }}</h2>
+
+    <div class="row">
+        <!-- {% for post in final_postings %} -->
+        <div class="col s4">
+            <div class="card">
+                <div class="card-image">
+                    <a href="/"><img src="/" alt="">hi</a>
+                </div>
+                <div class="card-content">
+                    <p>TEST</p>
+                </div>
+                <div class="card-action">
+                    <a href="/">View listing: Price TEST PRICE</a>
+                </div>
+            </div>
+        </div>
+        <!-- {% endfor %} -->
+    </div>
 
 {% endblock content %}
