@@ -4,7 +4,7 @@ import requests
 from requests.compat import quote_plus
 from . import models
 
-BASE_CRAIGSLIST_URL = 'http://sanfrancisco.craigslist.org/search/?query={}'
+BASE_CRAIGSLIST_URL = 'http://sanfrancisco.craigslist.org/search/?query={}#seararch=1~list'
 
 # Create your views here.
 def home(request):
@@ -17,9 +17,11 @@ def new_search(request):
     
     final_url = BASE_CRAIGSLIST_URL.format(quote_plus(search))
 
-    response = requests.get('https://sfbay.craigslist.org/search/sss?query=computer#search=1~gallery~0~0')
+    response = requests.get(final_url)
     data = response.text
     soup = BeautifulSoup(data, features='html.parser')
+    post_titles = soup.find_all('li', {'class': 'cl-search-result cl-search-view-mode-list'})
+    print(data)
     
     stuff_for_frontend = {
         'search': search,
