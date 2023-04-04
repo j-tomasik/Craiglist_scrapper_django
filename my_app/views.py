@@ -5,6 +5,7 @@ from requests.compat import quote_plus
 from . import models
 
 BASE_CRAIGSLIST_URL = 'http://sanfrancisco.craigslist.org/search/?query={}#seararch=1~list'
+BASE_IMAGE_URL = 'https://images.craigslist.org/{}_300x300.jpg'
 
 # Create your views here.
 def home(request):
@@ -47,5 +48,6 @@ def new_search(request):
     
     stuff_for_frontend = {
         'search': search,
+        'final_postings': final_postings,
     }
     return render(request, 'my_app/new_search.html', stuff_for_frontend) 
