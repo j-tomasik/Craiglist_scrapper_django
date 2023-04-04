@@ -2,6 +2,7 @@ from django.shortcuts import render
 from bs4 import BeautifulSoup
 import requests
 from requests.compat import quote_plus
+from . import models
 
 BASE_CRAIGSLIST_URL = 'http://sanfrancisco.craigslist.org/search/?query={}'
 
@@ -12,10 +13,14 @@ def home(request):
 def new_search(request):
     #request.POST returns a dictionary, .get accesses the value at 'search'
     search = request.POST.get('search')
+    models.Search.objects.create(search=search)
+    
     final_url = BASE_CRAIGSLIST_URL.format(quote_plus(search))
 
     response = requests.get('https://sfbay.craigslist.org/search/sss?query=computer#search=1~gallery~0~0')
     data = response.text
+    soup = BeautifulSoup(data, features='html.parser')
+    
     stuff_for_frontend = {
         'search': search,
     }
